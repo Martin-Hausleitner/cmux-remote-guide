@@ -95,13 +95,20 @@ Standardmäßig droppt Tailscale den eingehenden TCP-Traffic auf dem Mac, wenn k
 
 ## 📱 5. iOS App: Cmux Remote einrichten
 
-Jetzt ist alles vorbereitet. Schnapp dir dein iPhone!
+Die iOS-App nutzt ein geniales "Zero-Config" Security-Modell: Es gibt **keine** Eingabefelder für User, Passwörter oder API-Keys. Die Authentifizierung erfolgt unsichtbar im Hintergrund über Tailscale!
 
-1. Öffne die **Cmux Remote** App.
-2. Trage bei **Host** deine IP ein:
-   * **Zuhause:** Deine WLAN-IP (z.B. `10.0.0.x`) – *superschnell & direkt!*
-   * **Unterwegs:** Deine Tailscale-IP (z.B. `100.x.y.z`) – *weltweit erreichbar!*
-3. Trage bei **Port** `4399` ein.
-4. Tippe auf **SAVE & RECONNECT**.
+**Schritt-für-Schritt Verbindung:**
+1. **Tailscale aktivieren:** Stelle sicher, dass Tailscale auf dem iPhone aktiv ist und sich im selben Netz wie dein Mac befindet.
+2. **Öffne die "cmux Remote" App** auf dem iPhone.
+3. Scrolle in den Einstellungen zum Bereich **Mac 연결** (Mac Connection).
+4. Trage bei **Host** deine IP ein:
+   * **Zuhause (WLAN):** Deine lokale Mac-IP (z.B. `192.168.x.x`), falls du den LAN Bypass (Schritt 3) aktiviert hast.
+   * **Unterwegs / Standard:** Deine Tailscale-IP (z.B. `100.x.y.z`) oder dein Tailnet-DNS-Name.
+5. Trage bei **Port** `4399` ein (dies ist der Standard-Port der `relay.json`).
+6. Tippe auf **저장 후 연결 다시 시도** (Save & Reconnect).
 
-✅ **Fertig!** Dein Terminal-Fenster sollte nun direkt auf deinem iPhone gespiegelt werden! 🚀🔥
+**🔑 Wie funktioniert das automatische Pairing?**
+Beim ersten Verbindungsaufbau ruft die App den Endpunkt `/v1/devices/me/register` deines Mac-Daemons auf. Der Daemon prüft über Tailscale deine Identität, gleicht sie mit dem Feld `allow_login` in der `relay.json` ab und stellt dem iPhone automatisch ein sicheres Device-Token (Bearer-Token) aus. Dieses wird im Keychain deines iPhones gespeichert.
+Wenn du die Verbindung trennen willst, klickst du in der App einfach auf den roten Button **"[ UNPAIR THIS DEVICE ]"**.
+
+✅ **Fertig!** Sobald der Status auf `connected` springt und deine "Workspaces" sichtbar werden, hast du dein Terminal direkt auf dem iPhone! 🚀🔥
