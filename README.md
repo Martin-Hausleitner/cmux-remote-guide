@@ -11,7 +11,7 @@ Damit die iOS-App flüssig und zuverlässig mit deinem Terminal kommuniziert, ko
 
 1. **Terminal öffnen** und das Repository klonen:
    ```bash
-   git clone https://github.com/GenieApp/cmux-remote.git /tmp/cmux-remote-install
+   git clone https://github.com/NewTurn2017/cmux-remote.git /tmp/cmux-remote-install
    cd /tmp/cmux-remote-install
    ```
 2. **Installations-Skript ausführen**:
